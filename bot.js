@@ -131,10 +131,14 @@ async function getTomorrow() {
   }
 }
 
-cron.schedule("57 8 * * *", () => {
+console.log(new Date().toLocaleString());
+
+cron.schedule("4 9 * * *", () => {
+  console.log("Exécution de getTomorrow à", new Date().toLocaleString());
   getTomorrow();
 });
 
 cron.schedule("0 7 * * *", () => {
+  console.log("Exécution de getTempoAndNotify à", new Date().toLocaleString());
   getTempoAndNotify();
 });
