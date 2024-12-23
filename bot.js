@@ -9,6 +9,8 @@ const tempoAPI = "https://www.api-couleur-tempo.fr/api/jourTempo/today";
 const tempoAPItomorrow =
   "https://www.api-couleur-tempo.fr/api/jourTempo/tomorrow";
 
+const serverURL = "https://tempobot.onrender.com"; // Remplace par l'URL de ton serveur
+
 async function getTempoAndNotify() {
   try {
     // Appel à l'API pour récupérer le jour Tempo de demain
@@ -130,6 +132,25 @@ async function getTomorrow() {
     console.error("Erreur:", error);
   }
 }
+
+async function pingServer() {
+  try {
+    const response = await fetch(serverURL, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error("Erreur lors du ping du serveur");
+    }
+
+    console.log("Ping réussi:", new Date().toLocaleTimeString());
+  } catch (error) {
+    console.error("Erreur lors du ping du serveur:", error);
+  }
+}
+
+// Ping le serveur toutes les 10 secondes
+setInterval(pingServer, 10000);
 
 console.log(new Date().toLocaleString());
 
