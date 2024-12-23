@@ -51,26 +51,24 @@ async function getTempoAndNotify() {
     } else if (tempoDay == "3") {
       tempoDay = "🔴 Rouge";
     }
-    console.log(`Aujourd'hui (${formattedDate}): ${tempoDay}`);
+    console.log(`Aujourd'hui (${formattedDate}) Tempo EDF: ${tempoDay}`);
+    // Envoi de la notification via ntfy.sh
+    const ntfyResponse = await fetch(`https://ntfy.sh/${ntfyTopic}`, {
+      method: "POST",
+      headers: {
+        // "Content-Type": "text/plain",
+        Markdown: "yes",
+      },
+      body: `Aujourd'hui (${formattedDate}): ${tempoDay}`,
+    });
+    if (!ntfyResponse.ok) {
+      throw new Error("Erreur lors de l'envoi de la notification");
+    }
+    // Envoyer la notification (ajoutez votre logique d'envoi ici)
+    console.log(`Notification envoyée pour le ${formattedDate}: ${tempoDay}`);
   } catch (error) {
     console.error("Erreur lors de la récupération des données Tempo:", error);
   }
-
-  console.log(`${formattedDate} Tempo EDF: ${tempoDay}`);
-  // Envoi de la notification via ntfy.sh
-  const ntfyResponse = await fetch(`https://ntfy.sh/${ntfyTopic}`, {
-    method: "POST",
-    headers: {
-      // "Content-Type": "text/plain",
-      Markdown: "yes",
-    },
-    body: `Aujourd'hui (${formattedDate}): ${tempoDay}`,
-  });
-  if (!ntfyResponse.ok) {
-    throw new Error("Erreur lors de l'envoi de la notification");
-  }
-  // Envoyer la notification (ajoutez votre logique d'envoi ici)
-  console.log(`Notification envoyée pour le ${formattedDate}: ${tempoDay}`);
 }
 
 async function getTomorrow() {
@@ -167,6 +165,9 @@ setInterval(keepAlive, 600000);
 
 // Planifier la tâche pour récupérer et notifier les données Tempo tous les jours à 6h00
 console.log(new Date().toLocaleString());
+
+getTempoAndNotify();
+getTomorrow();
 
 cron.schedule("0 6 * * *", () => {
   // -1h car serveur -> different timezone
