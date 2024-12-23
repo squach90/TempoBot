@@ -133,12 +133,14 @@ async function getTomorrow() {
 
 console.log(new Date().toLocaleString());
 
-cron.schedule("15 8 * * *", () => {
+cron.schedule("0 6 * * *", () => {
+  // -1h car serveur -> different timezone
   console.log("Exécution de getTomorrow à", new Date().toLocaleString());
   getTomorrow();
 });
 
 cron.schedule("0 6 * * *", () => {
+  // -1h car serveur -> different timezone
   console.log("Exécution de getTempoAndNotify à", new Date().toLocaleString());
   getTempoAndNotify();
 });
