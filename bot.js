@@ -133,12 +133,12 @@ async function getTomorrow() {
 
 console.log(new Date().toLocaleString());
 
-cron.schedule("4 9 * * *", () => {
+cron.schedule("15 8 * * *", () => {
   console.log("Exécution de getTomorrow à", new Date().toLocaleString());
   getTomorrow();
 });
 
-cron.schedule("0 7 * * *", () => {
+cron.schedule("0 6 * * *", () => {
   console.log("Exécution de getTempoAndNotify à", new Date().toLocaleString());
   getTempoAndNotify();
 });
