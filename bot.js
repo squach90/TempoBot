@@ -58,7 +58,7 @@ async function getTempoAndNotify() {
         // "Content-Type": "text/plain",
         Markdown: "yes",
       },
-      body: `${formattedDate} Tempo EDF: ${tempoDay}`,
+      body: `Aujourd'hui (${formattedDate}): ${tempoDay}`,
     });
     if (!ntfyResponse.ok) {
       throw new Error("Erreur lors de l'envoi de la notification");
@@ -119,7 +119,7 @@ async function getTomorrow() {
         // "Content-Type": "text/plain",
         Markdown: "yes",
       },
-      body: `${formattedDate} Tempo EDF: ${tempoDay}`,
+      body: `Demain (${formattedDate}): ${tempoDay}`,
     });
     if (!ntfyResponse.ok) {
       throw new Error("Erreur lors de l'envoi de la notification");
