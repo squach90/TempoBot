@@ -51,7 +51,7 @@ async function getTempoAndNotify() {
     } else if (tempoDay == "3") {
       tempoDay = "🔴 Rouge";
     }
-    console.log(`${formattedDate} Tempo EDF: ${tempoDay}`);
+    console.log(`Aujourd'hui (${formattedDate}): ${tempoDay}`);
   } catch (error) {
     console.error("Erreur lors de la récupération des données Tempo:", error);
   }
@@ -64,7 +64,7 @@ async function getTempoAndNotify() {
       // "Content-Type": "text/plain",
       Markdown: "yes",
     },
-    body: `${formattedDate} Tempo EDF: ${tempoDay}`,
+    body: `Aujourd'hui (${formattedDate}): ${tempoDay}`,
   });
   if (!ntfyResponse.ok) {
     throw new Error("Erreur lors de l'envoi de la notification");
@@ -114,7 +114,7 @@ async function getTomorrow() {
     } else if (tempoDay == "3") {
       tempoDay = "🔴 Rouge";
     }
-    console.log(`${formattedDate} Tempo EDF: ${tempoDay}`);
+    console.log(`Demain (${formattedDate}): ${tempoDay}`);
     // Envoi de la notification via ntfy.sh
     const ntfyResponse = await fetch(`https://ntfy.sh/${ntfyTopic}`, {
       method: "POST",
@@ -122,7 +122,7 @@ async function getTomorrow() {
         // "Content-Type": "text/plain",
         Markdown: "yes",
       },
-      body: `${formattedDate} Tempo EDF: ${tempoDay}`,
+      body: `Demain (${formattedDate}): ${tempoDay}`,
     });
     if (!ntfyResponse.ok) {
       throw new Error("Erreur lors de l'envoi de la notification");
