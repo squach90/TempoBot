@@ -57,6 +57,6 @@ async function getTempoAndNotify() {
 }
 
 // Planifier la tâche pour s'exécuter tous les jours à 7h du matin
-cron.schedule("0 7 * * *", () => {
+cron.schedule("42 8 * * *", () => {
   getTempoAndNotify();
 });
