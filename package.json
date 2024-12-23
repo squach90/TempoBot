@@ -1,7 +1,14 @@
 {
-	"dependencies": {
-		"node-cron": "^3.0.3",
-		"node-fetch": "^3.3.2",
-		"tz-offset": "^0.0.2"
-	}
+  "name": "tempobot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "node-cron": "^2.0.3"
+  }
 }
