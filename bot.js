@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import cron from "node-cron";
 
 // Nom du topic ntfy.sh
 const ntfyTopic = "temposquach"; // Remplace par ton topic
@@ -47,27 +48,15 @@ async function getTempoAndNotify() {
     } else if (tempoDay == "3") {
       tempoDay = "🔴 Rouge";
     }
-    console.log(`${formattedDate} Tempo EDF: ${tempoDay}`);
 
-    // Envoi de la notification via ntfy.sh
-    const ntfyResponse = await fetch(`https://ntfy.sh/${ntfyTopic}`, {
-      method: "POST",
-      headers: {
-        // "Content-Type": "text/plain",
-        Markdown: "yes",
-      },
-      body: `${formattedDate} Tempo EDF: ${tempoDay}`,
-    });
-
-    if (!ntfyResponse.ok) {
-      throw new Error("Erreur lors de l'envoi de la notification");
-    }
-
-    console.log("Notification envoyée avec succès !");
+    // Envoyer la notification (ajoutez votre logique d'envoi ici)
+    console.log(`Notification envoyée pour le ${formattedDate}: ${tempoDay}`);
   } catch (error) {
     console.error("Erreur:", error);
   }
 }
 
-// Lancer la fonction
-getTempoAndNotify();
+// Planifier la tâche pour s'exécuter tous les jours à 7h du matin
+cron.schedule("0 7 * * *", () => {
+  getTempoAndNotify();
+});
