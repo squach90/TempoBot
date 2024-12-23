@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import cron from "node-cron";
+import http from "http";
 
 // URL de l'API de couleur Tempo d'EDF
 const tempoAPI = "https://www.api-couleur-tempo.fr/api/jourTempo/today";
@@ -72,9 +73,21 @@ async function keepAlive() {
   }
 }
 
+// Créer un serveur HTTP pour écouter sur le port spécifié par Render
+const port = process.env.PORT || 3000;
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Bot is running\n");
+  })
+  .listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+  });
+
 // Ping le serveur toutes les 10 minutes pour le garder actif
 setInterval(keepAlive, 600000);
 
+// Planifier la tâche pour récupérer et notifier les données Tempo tous les jours à 6h00
 console.log(new Date().toLocaleString());
 
 cron.schedule("0 6 * * *", () => {
