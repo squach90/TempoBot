@@ -74,7 +74,7 @@ async function getTempoAndNotify() {
 async function getTomorrow() {
   try {
     // Appel à l'API pour récupérer le jour Tempo de demain
-    const response = await fetch(tempoAPI, {
+    const response = await fetch(tempoAPItomorrow, {
       method: "GET",
       headers: {
         Accept: "application/json",
