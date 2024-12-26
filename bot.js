@@ -166,13 +166,13 @@ setInterval(keepAlive, 600000);
 // Planifier la tâche pour récupérer et notifier les données Tempo tous les jours à 6h00
 console.log(new Date().toLocaleString());
 
-cron.schedule("1 6 * * *", () => {
+cron.schedule("30 6 * * *", () => {
   // -1h car serveur -> different timezone
   console.log("Exécution de getTomorrow à", new Date().toLocaleString());
   getTomorrow();
 });
 
-cron.schedule("1 6 * * *", () => {
+cron.schedule("30 6 * * *", () => {
   // -1h car serveur -> different timezone
   console.log("Exécution de getTempoAndNotify à", new Date().toLocaleString());
   getTempoAndNotify();
