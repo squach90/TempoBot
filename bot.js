@@ -95,6 +95,16 @@ async function getTomorrow() {
     let month = today.getMonth() + 1;
     let year = today.getFullYear();
 
+    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    if (day > lastDayOfMonth) {
+      day = 1;
+      month += 1;
+      if (month > 12) {
+        month = 1;
+        year += 1;
+      }
+    }
+
     day = day < 10 ? "0" + day : day;
     month = month < 10 ? "0" + month : month;
 
