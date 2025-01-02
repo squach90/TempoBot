@@ -85,31 +85,20 @@ async function getTomorrow() {
       throw new Error("Erreur lors de la récupération des données Tempo");
     }
 
-    // Récupérer la réponse JSON
-    const tempoData = await response.json();
-    console.log("Données Tempo reçues:", tempoData); // Ajout de log pour vérifier les données reçues
-    let tempoDay = tempoData.codeJour; // Supposons que la réponse contient un champ 'codeJour'
-    const today = new Date();
+    // Calculer la date de demain
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
 
-    let day = today.getDate() + 1;
-    let month = today.getMonth() + 1;
-    let year = today.getFullYear();
-
-    const lastDayOfMonth = new Date(year, month, 0).getDate();
-    if (day > lastDayOfMonth) {
-      day = 1;
-      month += 1;
-      if (month > 12) {
-        month = 1;
-        year += 1;
-      }
-    }
+    let day = tomorrow.getDate();
+    let month = tomorrow.getMonth() + 1; // Les mois sont indexés à partir de 0
+    let year = tomorrow.getFullYear();
 
     day = day < 10 ? "0" + day : day;
     month = month < 10 ? "0" + month : month;
 
     // Format the date as dd/mm/yyyy
     const formattedDate = `${day}/${month}/${year}`;
+    console.log(`Demain est le ${formattedDate}`);
 
     if (!tempoDay) {
       throw new Error("Erreur lors de la récupération du jour Tempo");
