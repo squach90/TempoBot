@@ -85,6 +85,8 @@ async function getTomorrow() {
       throw new Error("Erreur lors de la récupération des données Tempo");
     }
 
+    const today = new Date();
+
     // Calculer la date de demain
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
