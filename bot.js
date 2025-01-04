@@ -85,6 +85,9 @@ async function getTomorrow() {
       throw new Error("Erreur lors de la récupération des données Tempo");
     }
 
+    const tempoData = await response.json();
+    console.log("Données Tempo reçues:", tempoData); // Ajout de log pour vérifier les données reçues
+    let tempoDay = tempoData.codeJour; // Supposons que la réponse contient un champ 'codeJour'
     const today = new Date();
 
     // Calculer la date de demain
@@ -163,6 +166,10 @@ http
 
 // Ping le serveur toutes les 10 minutes pour le garder actif
 setInterval(keepAlive, 600000);
+
+getTempoAndNotify(); // Appeler la fonction pour récupérer et notifier les données Tempo
+
+getTomorrow();
 
 // Planifier la tâche pour récupérer et notifier les données Tempo tous les jours à 6h00
 console.log(new Date().toLocaleString());
