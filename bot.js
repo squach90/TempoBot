@@ -167,10 +167,6 @@ http
 // Ping le serveur toutes les 10 minutes pour le garder actif
 setInterval(keepAlive, 600000);
 
-getTempoAndNotify(); // Appeler la fonction pour récupérer et notifier les données Tempo
-
-getTomorrow();
-
 // Planifier la tâche pour récupérer et notifier les données Tempo tous les jours à 6h00
 console.log(new Date().toLocaleString());
 
