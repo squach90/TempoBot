@@ -172,12 +172,12 @@ console.log(new Date().toLocaleString());
 
 cron.schedule("30 6 * * *", () => {
   // -1h car serveur -> different timezone
-  console.log("Exécution de getTomorrow à", new Date().toLocaleString());
-  getTomorrow();
+  console.log("Exécution de getTempoAndNotify à", new Date().toLocaleString());
+  getTempoAndNotify();
 });
 
 cron.schedule("30 6 * * *", () => {
   // -1h car serveur -> different timezone
-  console.log("Exécution de getTempoAndNotify à", new Date().toLocaleString());
-  getTempoAndNotify();
+  console.log("Exécution de getTomorrow à", new Date().toLocaleString());
+  getTomorrow();
 });
