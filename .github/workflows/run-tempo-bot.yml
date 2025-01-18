@@ -1,9 +1,11 @@
 name: Run Tempo Bot
 
 on:
+on:
+  workflow_dispatch: # Pour le déclencher manuellement
   schedule:
     # -1h -> UTC
-    - cron: '31 10 * * *'
+    - cron: '34 10 * * *'
 
 jobs:
   run-bot:
