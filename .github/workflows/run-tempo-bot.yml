@@ -2,6 +2,8 @@ name: Run Tempo Bot
 
 on:
   workflow_dispatch: # Permet de lancer manuellement le workflow depuis GitHub
+  schedule:
+    - cron: '10 7 * * *'
 
 jobs:
   run-bot:
