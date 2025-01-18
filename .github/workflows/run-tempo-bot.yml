@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Pour le déclencher manuellement
   schedule:
     # -1h -> UTC
-    - cron: "35 10 * * *"
+    - cron: "38 10 * * *"
 
 jobs:
   run-bot:
