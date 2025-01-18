@@ -1,28 +1,26 @@
 name: Run Tempo Bot
 
 on:
-on:
   workflow_dispatch: # Pour le déclencher manuellement
   schedule:
     # -1h -> UTC
-    - cron: '34 10 * * *'
+    - cron: "34 10 * * *"
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run the bot
-      run: node bot.js
-
+      - name: Run the bot
+        run: node bot.js
