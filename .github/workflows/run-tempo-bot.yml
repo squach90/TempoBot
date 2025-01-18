@@ -1,0 +1,24 @@
+name: Run Tempo Bot
+
+on:
+  workflow_dispatch: # Permet de lancer manuellement le workflow depuis GitHub
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18 # Remplace par la version de Node.js utilisée par ton bot
+
+    - name: Install dependencies
+      run: npm install # Assure-toi que ton fichier package.json est bien configuré
+
+    - name: Run the bot
+      run: node bot.js
+
