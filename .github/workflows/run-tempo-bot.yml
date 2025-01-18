@@ -1,9 +1,9 @@
 name: Run Tempo Bot
 
 on:
-  workflow_dispatch: # Permet de lancer manuellement le workflow depuis GitHub
   schedule:
-    - cron: '10 7 * * *'
+    # -1h -> UTC
+    - cron: '10 6 * * *'
 
 jobs:
   run-bot:
@@ -16,10 +16,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 18 # Remplace par la version de Node.js utilisée par ton bot
+        node-version: 18
 
     - name: Install dependencies
-      run: npm install # Assure-toi que ton fichier package.json est bien configuré
+      run: npm install
 
     - name: Run the bot
       run: node bot.js
