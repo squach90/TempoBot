@@ -2,8 +2,8 @@ name: Run Tempo Bot
 
 on:
   schedule:
-    # -1h -> UTC
-    - cron: "10 6 * * *"
+    # -1h & 30min -> UTC
+    - cron: "40 5 * * *"
 
 jobs:
   run-bot:
