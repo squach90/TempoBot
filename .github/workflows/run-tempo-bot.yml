@@ -1,6 +1,7 @@
 name: Run Tempo Bot
 
 on:
+  workflow_dispatch:
   schedule:
     # -1h & 30min -> UTC
     - cron: "10 6 * * *"
